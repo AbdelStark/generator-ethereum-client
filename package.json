@@ -1,8 +1,9 @@
 {
   "name": "generator-ethereum-client",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Ethereum Client configuration file generator based on Yeoman",
   "files": [
+    "common",
     "generators"
   ],
   "repository": {
