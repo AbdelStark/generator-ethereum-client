@@ -21,6 +21,7 @@ module.exports = class extends Generator {
             askMiningOptions: prompts.askMiningOptions,
             askJsonRpcOptions: prompts.askJsonRpcOptions,
             askP2POptions: prompts.askP2POptions,
+            askGraphqlOptions: prompts.askGraphqlOptions,
         };
     }
 
@@ -48,6 +49,9 @@ module.exports = class extends Generator {
                 p2pPort: this.p2pPort,
                 p2pInterface: this.p2pInterface,
                 discoveryEnabled: this.discoveryEnabled,
+                graphqlHttpEnabled: this.graphqlHttpEnabled,
+                graphqlHttpHost: this.graphqlHttpHost,
+                graphqlHttpPort: this.graphqlHttpPort,
             }
         );
         this.config.save();
@@ -107,5 +111,8 @@ module.exports = class extends Generator {
         this.p2pPort = 30303;
         this.p2pInterface = JSON.stringify('0.0.0.0');
         this.discoveryEnabled = true;
+        // GraphQL default options
+        this.graphqlHttpHost = JSON.stringify('127.0.0.1');
+        this.graphqlHttpPort = 8547;
     }
 };

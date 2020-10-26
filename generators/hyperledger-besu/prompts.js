@@ -7,6 +7,7 @@ module.exports = {
     askMiningOptions,
     askJsonRpcOptions,
     askP2POptions,
+    askGraphqlOptions,
 };
 
 async function askNetwork() {
@@ -73,7 +74,7 @@ async function askMiningOptions() {
 }
 
 async function askJsonRpcOptions() {
-    var answers = await this.prompt([
+    let answers = await this.prompt([
         {
             type: "confirm",
             name: "rpcHttpEnabled",
@@ -190,6 +191,53 @@ async function askP2POptions() {
                 }
             ]);
             this.discoveryEnabled = answers.discoveryEnabled;
+        }
+    }
+}
+
+async function askGraphqlOptions() {
+    let answers = await this.prompt([
+        {
+            type: "confirm",
+            name: "graphqlHttpEnabled",
+            message: "Do you want to enable the GraphQL HTTP service ?",
+            default: this.graphqlHttpEnabled,
+            store: true,
+        }
+    ]);
+    this.graphqlHttpEnabled = answers.graphqlHttpEnabled;
+    if (this.graphqlHttpEnabled) {
+        answers = await this.prompt([
+            {
+                type: "confirm",
+                name: "configureGraphqlOptions",
+                message: "Do you want to configure the GraphQL options now ?",
+                default: this.configureGraphqlOptions,
+                store: true,
+            }
+        ]);
+        this.configureGraphqlOptions = answers.configureGraphqlOptions;
+        if (this.configureGraphqlOptions) {
+            answers = await this.prompt([
+                {
+                    type: 'String',
+                    name: 'graphqlHttpHost',
+                    message: `What is the ${chalk.yellow('*GraphQL HTTP host address*')} ?`,
+                    default: this.graphqlHttpHost,
+                    store: true,
+                },
+            ]);
+            this.graphqlHttpHost = JSON.stringify(answers.graphqlHttpHost);
+            answers = await this.prompt([
+                {
+                    type: 'number',
+                    name: 'graphqlHttpPort',
+                    message: `What is the ${chalk.yellow('*GraphQL HTTP port*')} ?`,
+                    default: this.graphqlHttpPort,
+                    store: true,
+                },
+            ]);
+            this.graphqlHttpPort = answers.graphqlHttpPort;
         }
     }
 }
