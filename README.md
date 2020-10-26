@@ -46,7 +46,31 @@ npm install -g generator-ethereum-client
 ### Run the generator
 
 ```shell script
-yo  eip
+yo  ethereum-client
+```
+
+#### Run the generator for Hyperledger Besu
+
+```shell script
+yo  ethereum-client:hyperledger-besu
+```
+
+#### Run the generator for Geth
+
+```shell script
+yo  ethereum-client:geth
+```
+
+#### Run the generator for Nethermind
+
+```shell script
+yo  ethereum-client:nethermind
+```
+
+#### Run the generator for Open Ethereum
+
+```shell script
+yo  ethereum-client:open-ethereum
 ```
 
 [sonar-url]: https://sonarcloud.io/dashboard?id=abdelhamidbakhta_generator-ethereum-client

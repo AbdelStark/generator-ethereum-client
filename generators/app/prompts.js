@@ -1,5 +1,5 @@
 const chalk = require('chalk');
-const util = require('./util');
+const util = require('../../common/util');
 
 module.exports = {
     askClient,
@@ -9,7 +9,7 @@ async function askClient() {
     const choices = [
         {
             name: 'Hyperledger Besu',
-            value: 'hyperledger-besu'
+            value: 'hyperledger-hyperledger-besu'
         },
         {
             name: 'Geth',
