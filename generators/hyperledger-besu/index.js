@@ -99,11 +99,11 @@ module.exports = class extends Generator {
     _initDefaultConfig() {
         this.outputConfigPath = '';
         // JSON RPC default options
-        this.rpcHttpHost = JSON.stringify('localhost');
+        this.rpcHttpHost = JSON.stringify('127.0.0.1');
         this.rpcHttpPort = 8545;
         this.rpcHttpApis = '["ETH","NET","WEB3"]';
         // P2P default options
-        this.p2pHost = JSON.stringify('localhost');
+        this.p2pHost = JSON.stringify('127.0.0.1');
         this.p2pPort = 30303;
         this.p2pInterface = JSON.stringify('0.0.0.0');
         this.discoveryEnabled = true;
