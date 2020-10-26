@@ -12,7 +12,7 @@ This generator creates configuration files for various Ethereum clients.
 
 | Name   |      Repository      |  Supported |
 |----------|:-------------|------:|
-| Hyperledger Besu |  https://github.com/hyperledger/besu | No |
+| Hyperledger Besu |  https://github.com/hyperledger/besu | Partially |
 | Geth |    https://github.com/ethereum/go-ethereum   |   No |
 | Nethermind | https://github.com/NethermindEth/nethermind |    No |
 | Open Ethereum | https://github.com/openethereum/openethereum |    No |
