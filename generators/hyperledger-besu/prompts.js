@@ -122,7 +122,7 @@ async function askJsonRpcOptions() {
                 name: 'apis',
                 choices: _rpcHttpApisChoices(),
             });
-            this.rpcHttpApis = JSON.stringify(answers.apis.join(','));
+            this.rpcHttpApis = "[" + answers.apis.join(',') + "]";
         }
     }
 }
@@ -222,59 +222,59 @@ function _ethereumNetworkChoices() {
 function _rpcHttpApisChoices() {
     return [
         {
-            value: 'ETH',
+            value: '"ETH"',
             checked: true,
         },
         {
-            value: 'NET',
+            value: '"NET"',
             checked: true,
         },
         {
-            value: 'WEB3',
+            value: '"WEB3"',
             checked: true,
         },
         {
-            value: 'ADMIN',
+            value: '"ADMIN"',
             checked: false,
         },
         {
-            value: 'CLIQUE',
+            value: '"CLIQUE"',
             checked: false,
         },
         {
-            value: 'DEBUG',
+            value: '"DEBUG"',
             checked: false,
         },
         {
-            value: 'EEA',
+            value: '"EEA"',
             checked: false,
         },
         {
-            value: 'IBFT',
+            value: '"IBFT"',
             checked: false,
         },
         {
-            value: 'MINER',
+            value: '"MINER"',
             checked: false,
         },
         {
-            value: 'PERM',
+            value: '"PERM"',
             checked: false,
         },
         {
-            value: 'PLUGINS',
+            value: '"PLUGINS"',
             checked: false,
         },
         {
-            value: 'PRIV',
+            value: '"PRIV"',
             checked: false,
         },
         {
-            value: 'TRACE',
+            value: '"TRACE"',
             checked: false,
         },
         {
-            value: 'TXPOOL',
+            value: '"TXPOOL"',
             checked: false,
         },
     ];
