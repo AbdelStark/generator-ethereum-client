@@ -10,13 +10,15 @@ module.exports = class extends Generator {
     }
 
     initializing() {
-        this.outputConfigPath = '';
+        this._initDefaultConfig();
         this._printWelcomeMessage();
     }
 
     _prompting() {
         return {
             askNetwork: prompts.askNetwork,
+            askDataPath: prompts.askDataPath,
+            askMiningOptions: prompts.askMiningOptions,
         };
     }
 
@@ -31,6 +33,10 @@ module.exports = class extends Generator {
             this.destinationPath(this.outputConfigPath),
             {
                 ethereumNetwork: this.ethereumNetwork,
+                dataPath: this.dataPath,
+                minerEnabled: this.minerEnabled,
+                minerCoinbase: this.minerCoinbase,
+                customGenesisPath: this.customGenesisPath,
             }
         );
         this.config.save();
@@ -66,12 +72,19 @@ module.exports = class extends Generator {
             '::::::::::::::::::::: ##:::: ##: ##:::::::\'##::: ##: ##:::: ##::::::::::::::::::::::::::::::::::::::::::::::::::::  \n' +
             '::::::::::::::::::::: ########:: ########:. ######::. #######:::::::::::::::::::::::::::::::::::::::::::::::::::::  \n' +
             ':::::::::::::::::::::........:::........:::......::::.......::::::::::::::::::::::::::::::::::::::::::::::::::::::  ')}`);
+        this.log(chalk.blue('https://github.com/hyperledger/besu'));
+        this.log(`Full documentation at: ${chalk.magenta('https://besu.hyperledger.org/')}`);
         this.log(chalk.white('Welcome to Hyperledger Besu config generator ') + chalk.yellow(`v${packageInformation.version}`));
         this.log(chalk.white(`Application files will be generated in folder: ${chalk.yellow(process.cwd())}`));
     }
 
     _printGoodByeMessage() {
         this.log('Configuration file is ready: ', chalk.yellow(`${process.cwd()}/${this.outputConfigPath}`));
-        this.log(chalk.magentaBright.bold(`Goodbye!`));
+        this.log('Run Hypderledger Besu with: ', chalk.yellow(`besu --config-file=${process.cwd()}/${this.outputConfigPath}`));
+        this.log(chalk.greenBright.bold(`Goodbye!`));
+    }
+
+    _initDefaultConfig() {
+        this.outputConfigPath = '';
     }
 };

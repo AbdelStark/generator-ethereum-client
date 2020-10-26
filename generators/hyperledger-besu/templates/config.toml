@@ -1,1 +1,10 @@
 network=<%= ethereumNetwork %>
+<% if (ethereumNetwork == 'custom') { %>genesis-file= <%= customGenesisPath %>
+<%}-%>
+
+data-path=<%- dataPath ? dataPath : '~/besudata' %>
+
+#Mining
+miner-enabled=<%- minerEnabled ? minerEnabled : false %>
+<% if (minerEnabled) { %>miner-coinbase= <%= minerCoinbase %>
+<%}-%>
