@@ -19,6 +19,8 @@ module.exports = class extends Generator {
             askNetwork: prompts.askNetwork,
             askDataPath: prompts.askDataPath,
             askMiningOptions: prompts.askMiningOptions,
+            askJsonRpcOptions: prompts.askJsonRpcOptions,
+            askP2POptions: prompts.askP2POptions,
         };
     }
 
@@ -37,6 +39,14 @@ module.exports = class extends Generator {
                 minerEnabled: this.minerEnabled,
                 minerCoinbase: this.minerCoinbase,
                 customGenesisPath: this.customGenesisPath,
+                rpcHttpEnabled: this.rpcHttpEnabled,
+                rpcHttpHost: this.rpcHttpHost,
+                rpcHttpPort: this.rpcHttpPort,
+                rpcHttpApis: this.rpcHttpApis,
+                p2pEnabled: this.p2pEnabled,
+                p2pHost: this.p2pHost,
+                p2pPort: this.p2pPort,
+                p2pInterface: this.p2pInterface,
             }
         );
         this.config.save();
@@ -86,5 +96,13 @@ module.exports = class extends Generator {
 
     _initDefaultConfig() {
         this.outputConfigPath = '';
+        // JSON RPC default options
+        this.rpcHttpHost = 'localhost';
+        this.rpcHttpPort = 8545;
+        this.rpcHttpApis = 'ETH,NET,WEB3';
+        // P2P default options
+        this.p2pHost = 'localhost';
+        this.p2pPort = 30303;
+        this.p2pInterface = '0.0.0.0';
     }
 };

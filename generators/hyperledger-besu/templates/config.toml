@@ -4,7 +4,21 @@ network=<%= ethereumNetwork %>
 
 data-path=<%- dataPath ? dataPath : '~/besudata' %>
 
-#Mining
+# JSON RPC
+rpc-http-enabled=<%- rpcHttpEnabled ? rpcHttpEnabled : false %>
+<% if (rpcHttpEnabled) { %>rpc-http-host=<%= rpcHttpHost %>
+rpc-http-port=<%= rpcHttpPort %>
+rpc-http-apis=<%= rpcHttpApis %>
+<%}-%>
+
+# P2P
+p2p-enabled=<%- p2pEnabled ? p2pEnabled : false %>
+<% if (p2pEnabled) { %>p2p-host=<%= p2pHost %>
+p2p-port=<%= p2pPort %>
+p2p-interface=<%= p2pInterface %>
+<%}-%>
+
+# Mining
 miner-enabled=<%- minerEnabled ? minerEnabled : false %>
 <% if (minerEnabled) { %>miner-coinbase= <%= minerCoinbase %>
 <%}-%>
