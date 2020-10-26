@@ -24,9 +24,9 @@ module.exports = class extends Generator {
         };
     }
 
-    configuring() {
+    /*configuring() {
 
-    }
+    }*/
 
     writing() {
         this.outputConfigPath = 'besu/config.toml';
@@ -47,6 +47,7 @@ module.exports = class extends Generator {
                 p2pHost: this.p2pHost,
                 p2pPort: this.p2pPort,
                 p2pInterface: this.p2pInterface,
+                discoveryEnabled: this.discoveryEnabled,
             }
         );
         this.config.save();
@@ -90,6 +91,7 @@ module.exports = class extends Generator {
 
     _printGoodByeMessage() {
         this.log('Configuration file is ready: ', chalk.yellow(`${process.cwd()}/${this.outputConfigPath}`));
+        this.log(`${chalk.underline.blue('Note:')} if Hyperledger Besu is not installed go to ${chalk.yellow('https://besu.hyperledger.org/en/stable/HowTo/Get-Started/Install-Binaries/')}`);
         this.log('Run Hypderledger Besu with: ', chalk.yellow(`besu --config-file=${process.cwd()}/${this.outputConfigPath}`));
         this.log(chalk.greenBright.bold(`Goodbye!`));
     }
@@ -97,12 +99,13 @@ module.exports = class extends Generator {
     _initDefaultConfig() {
         this.outputConfigPath = '';
         // JSON RPC default options
-        this.rpcHttpHost = 'localhost';
+        this.rpcHttpHost = JSON.stringify('localhost');
         this.rpcHttpPort = 8545;
-        this.rpcHttpApis = 'ETH,NET,WEB3';
+        this.rpcHttpApis = JSON.stringify('ETH,NET,WEB3');
         // P2P default options
-        this.p2pHost = 'localhost';
+        this.p2pHost = JSON.stringify('localhost');
         this.p2pPort = 30303;
-        this.p2pInterface = '0.0.0.0';
+        this.p2pInterface = JSON.stringify('0.0.0.0');
+        this.discoveryEnabled = true;
     }
 };

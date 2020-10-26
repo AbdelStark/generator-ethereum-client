@@ -29,8 +29,8 @@ async function askNetwork() {
         },
     ]);
 
-    this.ethereumNetwork = answers.ethereumNetwork;
-    this.customGenesisPath = answers.customGenesisPath;
+    this.ethereumNetwork = JSON.stringify(answers.ethereumNetwork);
+    this.customGenesisPath = JSON.stringify(answers.customGenesisPath);
 }
 
 
@@ -44,7 +44,7 @@ async function askDataPath() {
             store: true,
         },
     ]);
-    this.dataPath = answers.dataPath;
+    this.dataPath = JSON.stringify(answers.dataPath);
 }
 
 async function askMiningOptions() {
@@ -68,7 +68,7 @@ async function askMiningOptions() {
                 store: true,
             },
         ]);
-        this.minerCoinbase = minerCoinbaseAnswers.minerCoinbase;
+        this.minerCoinbase = JSON.stringify(minerCoinbaseAnswers.minerCoinbase);
     }
 }
 
@@ -104,7 +104,7 @@ async function askJsonRpcOptions() {
                     store: true,
                 },
             ]);
-            this.rpcHttpHost = answers.rpcHttpHost;
+            this.rpcHttpHost = JSON.stringify(answers.rpcHttpHost);
             answers = await this.prompt([
                 {
                     type: 'number',
@@ -122,7 +122,7 @@ async function askJsonRpcOptions() {
                 name: 'apis',
                 choices: _rpcHttpApisChoices(),
             });
-            this.rpcHttpApis = answers.apis.join(',');
+            this.rpcHttpApis = JSON.stringify(answers.apis.join(','));
         }
     }
 }
@@ -159,7 +159,7 @@ async function askP2POptions() {
                     store: true,
                 },
             ]);
-            this.p2pHost = answers.p2pHost;
+            this.p2pHost = JSON.stringify(answers.p2pHost);
             answers = await this.prompt([
                 {
                     type: 'number',
@@ -179,7 +179,17 @@ async function askP2POptions() {
                     store: true,
                 },
             ]);
-            this.p2pInterface = answers.p2pInterface;
+            this.p2pInterface = JSON.stringify(answers.p2pInterface);
+            answers = await this.prompt([
+                {
+                    type: "confirm",
+                    name: "discoveryEnabled",
+                    message: "Do you want to enable peer discovery ?",
+                    default: this.discoveryEnabled,
+                    store: true,
+                }
+            ]);
+            this.discoveryEnabled = answers.discoveryEnabled;
         }
     }
 }
