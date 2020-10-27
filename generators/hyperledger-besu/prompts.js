@@ -8,6 +8,7 @@ module.exports = {
     askJsonRpcOptions,
     askP2POptions,
     askGraphqlOptions,
+    askWsOptions,
 };
 
 async function askNetwork() {
@@ -238,6 +239,61 @@ async function askGraphqlOptions() {
                 },
             ]);
             this.graphqlHttpPort = answers.graphqlHttpPort;
+        }
+    }
+}
+
+async function askWsOptions() {
+    let answers = await this.prompt([
+        {
+            type: "confirm",
+            name: "rpcWsEnabled",
+            message: "Do you want to enable the Web Socket RPC service ?",
+            default: this.rpcWsEnabled,
+            store: true,
+        }
+    ]);
+    this.rpcWsEnabled = answers.rpcWsEnabled;
+    if (this.rpcWsEnabled) {
+        answers = await this.prompt([
+            {
+                type: "confirm",
+                name: "configureWsRpcOptions",
+                message: "Do you want to configure the Web Socket RPC options now ?",
+                default: this.configureWsRpcOptions,
+                store: true,
+            }
+        ]);
+        this.configureWsRpcOptions = answers.configureWsRpcOptions;
+        if (this.configureWsRpcOptions) {
+            answers = await this.prompt([
+                {
+                    type: 'String',
+                    name: 'rpcWsHost',
+                    message: `What is the ${chalk.yellow('*Web Socket host address*')} ?`,
+                    default: this.rpcWsHost,
+                    store: true,
+                },
+            ]);
+            this.rpcWsHost = JSON.stringify(answers.rpcWsHost);
+            answers = await this.prompt([
+                {
+                    type: 'number',
+                    name: 'rpcWsPort',
+                    message: `What is the ${chalk.yellow('*Web Socket port*')} ?`,
+                    default: this.rpcWsPort,
+                    store: true,
+                },
+            ]);
+            this.rpcWsPort = answers.rpcWsPort;
+
+            answers = await this.prompt({
+                message: 'Select the list of APIs to enable on Web Socket service',
+                type: 'checkbox',
+                name: 'apis',
+                choices: _rpcHttpApisChoices(),
+            });
+            this.rpcWsApis = "[" + answers.apis.join(',') + "]";
         }
     }
 }

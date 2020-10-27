@@ -12,6 +12,13 @@ rpc-http-port=<%= rpcHttpPort %>
 rpc-http-apis=<%- rpcHttpApis %>
 <%}-%>
 
+# Web Socket configuration
+rpc-ws-enabled=<%- rpcWsEnabled ? rpcWsEnabled : false %>
+<% if (rpcWsEnabled) { %>rpc-ws-host=<%- rpcWsHost %>
+rpc-ws-port=<%= rpcWsPort %>
+rpc-ws-apis=<%- rpcWsApis %>
+<%}-%>
+
 # P2P configuration
 p2p-enabled=<%- p2pEnabled ? p2pEnabled : false %>
 <% if (p2pEnabled) { %>p2p-host=<%- p2pHost %>

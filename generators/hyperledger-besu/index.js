@@ -22,6 +22,7 @@ module.exports = class extends Generator {
             askJsonRpcOptions: prompts.askJsonRpcOptions,
             askP2POptions: prompts.askP2POptions,
             askGraphqlOptions: prompts.askGraphqlOptions,
+            askWsOptions: prompts.askWsOptions,
         };
     }
 
@@ -52,6 +53,10 @@ module.exports = class extends Generator {
                 graphqlHttpEnabled: this.graphqlHttpEnabled,
                 graphqlHttpHost: this.graphqlHttpHost,
                 graphqlHttpPort: this.graphqlHttpPort,
+                rpcWsEnabled: this.rpcWsEnabled,
+                rpcWsHost: this.rpcWsHost,
+                rpcWsPort: this.rpcWsPort,
+                rpcWsApis: this.rpcWsApis,
             }
         );
         this.config.save();
@@ -114,5 +119,9 @@ module.exports = class extends Generator {
         // GraphQL default options
         this.graphqlHttpHost = JSON.stringify('127.0.0.1');
         this.graphqlHttpPort = 8547;
+        // JSON RPC default options
+        this.rpcWsHost = JSON.stringify('127.0.0.1');
+        this.rpcWsPort = 8546;
+        this.rpcWsApis = '["ETH","NET","WEB3"]';
     }
 };
